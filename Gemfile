@@ -11,6 +11,9 @@ gem 'rspec-rails', '2.11.0'
 gem 'guard-rspec', '1.2.1'
 gem 'annotate'
 gem 'bcrypt-ruby'
+gem 'faker'
+gem 'will_paginate', '3.0.3'
+gem 'bootstrap-will_paginate', '0.0.6'
 end
 
 
