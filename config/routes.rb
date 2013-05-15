@@ -1,11 +1,17 @@
 SimpleApp::Application.routes.draw do
 
-  resources :users
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts, only: [:create, :destroy]
-
+  resources :relationships, only: [:create, :destroy]
+  
   root to: 'static_pages#home'
-
+  
   match '/signup',  to: 'users#new'
   match '/signin',  to: 'sessions#new'
   match '/signout', to: 'sessions#destroy', via: :delete
@@ -14,23 +20,24 @@ SimpleApp::Application.routes.draw do
   match '/contact', to: 'static_pages#contact'
   # The priority is based upon order of creation:
   # first created -> highest priority.
-
+  
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-
+  
   # Sample of named route:
   #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
-
+  
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
-
+  
   # Sample resource route with options:
   #   resources :products do
   #     member do
   #       get 'short'
   #       post 'toggle'
+
   #     end
   #
   #     collection do
